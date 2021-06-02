@@ -172,8 +172,6 @@ def detectionResults(symbol, startDate, endDate, to_include_KNN, to_include_GBT,
 
     standarised_data = pd.DataFrame()
 
-    print(data)
-
     try:
         standarised_data = standartization(data_without_dates)
     except:
@@ -198,13 +196,8 @@ def detectionResults(symbol, startDate, endDate, to_include_KNN, to_include_GBT,
             results = pd.concat([results, GBT_results], axis=1)
     except:
         return 'Failed to load GBT results'
-    #     data = pdr.get_data_yahoo(symbols = symbol, start=startDate - timedelta(days = 1), end=endDate + timedelta(days = 1))
 
-    print(results)
     full_path = path + "/Market_Manipulation_Analysis_" + symbol + ".xlsx"
-    print(full_path)
-
-    #     writer = pd.ExcelWriter(full_path)
     results.to_excel(full_path, index=False)
 
     errorLine = 'No error detected'
